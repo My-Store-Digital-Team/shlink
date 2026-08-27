@@ -1,0 +1,37 @@
+services:
+  shlink:
+    image: shlinkio/shlink:4
+    restart: unless-stopped
+    environment:
+      DEFAULT_DOMAIN: s.yoanyandres.one
+      IS_HTTPS_ENABLED: "true"
+      TIMEZONE: America/Bogota
+    volumes:
+      - shlink_data:/etc/shlink/data
+    networks:
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.shlink.entrypoints=websecure
+      - traefik.http.routers.shlink.rule=Host(`s.yoanyandres.one`)
+      - traefik.http.routers.shlink.tls.certresolver=letsencrypt
+      - traefik.http.services.shlink.loadbalancer.server.port=8080
+
+  shlink-web:
+    image: shlinkio/shlink-web-client:stable
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.shlink-web.entrypoints=websecure
+      - traefik.http.routers.shlink-web.rule=Host(`shlink.yoanyandres.one`)
+      - traefik.http.routers.shlink-web.tls.certresolver=letsencrypt
+      - traefik.http.services.shlink-web.loadbalancer.server.port=8080
+
+volumes:
+  shlink_data:
+
+networks:
+  dokploy-network:
+    external: true
