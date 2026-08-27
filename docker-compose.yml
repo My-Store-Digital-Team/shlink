@@ -3,7 +3,7 @@ services:
     image: shlinkio/shlink:4
     restart: unless-stopped
     environment:
-      DEFAULT_DOMAIN: s.yoanyandres.one
+      DEFAULT_DOMAIN: qr.yoany.link
       IS_HTTPS_ENABLED: "true"
       TIMEZONE: America/Bogota
     volumes:
@@ -13,7 +13,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.shlink.entrypoints=websecure
-      - traefik.http.routers.shlink.rule=Host(`s.yoanyandres.one`)
+      - traefik.http.routers.shlink.rule=Host(`qr.yoany.link`)
       - traefik.http.routers.shlink.tls.certresolver=letsencrypt
       - traefik.http.services.shlink.loadbalancer.server.port=8080
 
@@ -25,7 +25,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.shlink-web.entrypoints=websecure
-      - traefik.http.routers.shlink-web.rule=Host(`shlink.yoanyandres.one`)
+      - traefik.http.routers.shlink-web.rule=Host(`shlink.mystoredigital.cloud`)
       - traefik.http.routers.shlink-web.tls.certresolver=letsencrypt
       - traefik.http.services.shlink-web.loadbalancer.server.port=8080
 
