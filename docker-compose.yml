@@ -13,7 +13,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.shlink.entrypoints=websecure
-      - traefik.http.routers.shlink.rule=Host(`qr.yoany.link`)
+      - traefik.http.routers.shlink.rule=Host(`qr.yoany.link`) || Host(`qr.mpflair.co`)
       - traefik.http.routers.shlink.tls.certresolver=letsencrypt
       - traefik.http.services.shlink.loadbalancer.server.port=8080
 
