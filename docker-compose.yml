@@ -1,6 +1,6 @@
 services:
   shlink:
-    image: shlinkio/shlink:4
+    image: shlinkio/shlink:5
     restart: unless-stopped
     environment:
       DEFAULT_DOMAIN: qr.yoany.link
